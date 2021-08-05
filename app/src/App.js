@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React from 'react';
+import jsPDF from 'jspdf';
 
+class App extends React.Component {
+   
+  constructor(props) {
+      super(props)
+      this.state ={}
+  };
+
+  generatePDF = () => {
+    var doc = new jsPDF('p', 'pt');
+    
+    doc.text(20, 20, 'This is the first title.')
+
+    
+    doc.text(20, 60, 'This is the second title.')
+
+    
+  
+    doc.text(20, 100, 'This is the thrid title.')      
+
+    
+    doc.save('demo.pdf')
+  }   
+  
+ render() {
+    return (
+       <div>
+          <button onClick={this.generatePDF} type="primary">Download PDF</button> 
+       </div>
+    );
+ }
+}
 export default App;
